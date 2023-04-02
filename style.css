@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+:root {
+    --bg-main: #464646;
+    --bg-card: #2D2727;
+    --border-color: #efc94f;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100vh;
+    background-color: var(--bg-main);
+}
+
+h1 {
+    color: #fff;
+    font-family: "Lexend Deca Light";
+    font-size: 3rem;
+}
+
+span {
+    color: var(--border-color);
+}
+
+#card-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5rem;
+}
+
+.card {
+    position: relative;
+    transition: all .4s linear;
+    transform-style: preserve-3d;
+}
+
+.card,
+.back-card,
+.front-card {
+    height: 6.25rem;
+    width: 6.25rem;
+    border-radius: .6rem;
+}
+
+.back-card,
+.front-card {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.front-card {
+    background: var(--border-color);
+    background-size: contain;
+    border-radius: .6rem;
+    box-shadow: rgba(208, 214, 220, 0.2) 0px 8px 24px;
+    padding: 2rem;
+}
+
+.back-card {
+    transform: rotateY(180deg);
+    /*background-color: #6589F9;*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: rgba(208, 214, 220, 0.2) 0px 8px 24px;
+    padding: 2rem;
+}
+
+.card_selected {
+    transform: rotateY(180deg);
+}
+
+.card_match {
+    transform: rotateY(180deg);
+}
+
+@media only screen and (max-width: 600px) {
+    .card,
+    .back-card,
+    .front-card {
+        height: 65px;
+        width: 65px;
+        border-radius: .4rem;
+    }
+
+    #card-section {
+        grid-gap: 20px;
+    }
+
+    h1{
+        font-size: 40px;
+        margin:0px 0px 5px 35px;
+    }
+}
