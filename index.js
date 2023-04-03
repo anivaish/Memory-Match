@@ -51,6 +51,46 @@ for (let i = 0; i < len; i++) {
 }
 let shuffledChild = Array.from(cardsArray).sort(() => 0.5 - Math.random());
 
+const selectors = {
+    boardContainer: document.querySelector('.board-container'),
+    board: document.querySelector('.board'),
+    moves: document.querySelector('.moves'),
+    timer: document.querySelector('.timer'),
+    start: document.querySelector('button'),
+    win: document.querySelector('.win')
+}
+
+const state = {
+    gameStarted: false,
+    flippedCards: 0,
+    totalFlips: 0,
+    totalTime: 0,
+    loop: null
+}
+
+
+const startGame = () => {
+    state.gameStarted = true
+    selectors.start.classList.add('disabled')
+
+    state.loop = setInterval(() => {
+        state.totalTime++
+
+        selectors.moves.innerText = `${state.totalFlips} moves`
+        selectors.timer.innerText = `Time: ${state.totalTime} sec`
+    }, 300)
+}
+
+const flipCard = card => {
+    state.flippedCards++
+    state.totalFlips++
+
+    if (!state.gameStarted) {
+        startGame()
+    }
+}
+
+
 let clickCount = 0;
 let firstCard = "";
 let firstCard_id = "";
@@ -144,3 +184,16 @@ for (let i = 0; i < shuffledChild.length; i++) {
     childDiv.appendChild(front_div)
     childDiv.appendChild(back_div)
 }
+const attachEventListeners = () => {
+    document.addEventListener('click', event => {
+        const eventTarget = event.target
+        const eventParent = eventTarget.parentElement
+
+        if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
+            flipCard(eventParent)
+        } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
+            startGame()
+        }
+    })
+}
+attachEventListeners();
