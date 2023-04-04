@@ -54,7 +54,7 @@ let shuffledChild = Array.from(cardsArray).sort(() => 0.5 - Math.random());
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
-    moves:document.querySelector('.moves'),
+    moves: document.querySelector('.moves'),
     timer: document.querySelector('.timer'),
     start: document.querySelector('button'),
     win: document.querySelector('.win')
@@ -76,17 +76,16 @@ const startGame = () => {
     state.loop = setInterval(() => {
         state.totalTime++
 
-        selectors.moves.innerText = `${state.totalFlips} moves`
+        selectors.moves.innerText = `${state.totalFlips} Moves`
         selectors.timer.innerText = `Time: ${state.totalTime} sec`
     }, 1000)
 }
 
 const flipCard = card => {
-    state.flippedCards++
     state.totalFlips++
 
     if (!state.gameStarted) {
-        startGame()
+        startGame();
     }
 }
 
@@ -101,6 +100,7 @@ const card_matches = () => {
 
     card_selected.forEach((curElem) => {
         curElem.classList.add('card_match');
+        curElem.lastChild.classList.add('card_match_border');
     })
 }
 
@@ -189,7 +189,7 @@ const attachEventListeners = () => {
         const eventTarget = event.target
         const eventParent = eventTarget.parentElement
 
-        if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
+        if (eventTarget.className.includes('card')) {
             flipCard(eventParent)
         } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
             startGame()
