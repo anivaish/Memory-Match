@@ -54,7 +54,7 @@ let shuffledChild = Array.from(cardsArray).sort(() => 0.5 - Math.random());
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
-    moves: document.querySelector('.moves'),
+    moves:document.querySelector('.moves'),
     timer: document.querySelector('.timer'),
     start: document.querySelector('button'),
     win: document.querySelector('.win')
@@ -78,7 +78,7 @@ const startGame = () => {
 
         selectors.moves.innerText = `${state.totalFlips} moves`
         selectors.timer.innerText = `Time: ${state.totalTime} sec`
-    }, 300)
+    }, 1000)
 }
 
 const flipCard = card => {
