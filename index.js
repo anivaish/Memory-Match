@@ -102,6 +102,20 @@ const card_matches = () => {
         curElem.classList.add('card_match');
         curElem.lastChild.classList.add('card_match_border');
     })
+    if (document.querySelectorAll('.card_match_border').length==4) {
+        selectors.boardContainer.classList.add('card_match1');
+        selectors.win.style.transform="rotateY(360deg)";
+        setTimeout(() => {
+            selectors.win.innerHTML = `
+                <span class="win-text">
+                    You Won!<br />
+                    With <span class="highlight">${state.totalFlips}</span> Moves<br />
+                    Under <span class="highlight">${state.totalTime}</span> seconds
+                </span>
+            `
+            clearInterval(state.loop)
+        },500);
+    }
 }
 
 const resetValues = () => {
@@ -144,8 +158,6 @@ parentDiv.addEventListener('click', (event) => {
         }
 
         if (firstCard !== "" && secondCard !== "") {
-            console.log(firstCard);
-            console.log(secondCard);
             if (firstCard === secondCard) {
                 setTimeout(() => {
                     card_matches();
