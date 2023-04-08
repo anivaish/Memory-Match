@@ -102,7 +102,7 @@ const card_matches = () => {
         curElem.classList.add('card_match');
         curElem.lastChild.classList.add('card_match_border');
     })
-    if (document.querySelectorAll('.card_match_border').length=16) {
+    if (document.querySelectorAll('.card_match_border').length===16) {
         selectors.boardContainer.classList.add('card_match1');
         selectors.win.style.transform="rotateY(360deg)";
         setTimeout(() => {
