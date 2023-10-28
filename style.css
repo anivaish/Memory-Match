@@ -38,6 +38,7 @@ span {
 }
 
 .card {
+    cursor:pointer;
     position: relative;
     transition: all .4s linear;
     transform-style: preserve-3d;
